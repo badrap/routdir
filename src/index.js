@@ -1,10 +1,32 @@
-import { normalize, basename, dirname, extname } from "path";
-
 function takeDefault(module) {
   if (module.__esModule) {
     return module.default;
   }
   return module;
+}
+
+function splitPath(path) {
+  const result = [];
+
+  const parts = path.split("/");
+  for (let i = parts.length - 1; i >= 0; i--) {
+    const part = parts[i];
+    if (part === "..") {
+      i--;
+    } else if (part !== ".") {
+      result.push(part);
+    }
+  }
+
+  if (result.length > 0) {
+    const part = result[0];
+    const dot = part.lastIndexOf(".");
+    if (dot >= 0) {
+      result[0] = part.slice(0, dot);
+    }
+  }
+
+  return result.reverse();
 }
 
 function parsePathPart(part) {
@@ -17,21 +39,13 @@ function parsePathPart(part) {
 }
 
 function split(key) {
-  const result = [];
-
-  let rest = normalize(key);
-  while (rest && rest !== ".") {
-    const ext = result.length === 0 ? extname(rest) : "";
-    const part = basename(rest, ext).toLowerCase();
-    const parsed = parsePathPart(part);
+  return splitPath(key).map(part => {
+    const parsed = parsePathPart(part.toLowerCase());
     if (!parsed) {
       throw new Error(`invalid path ${JSON.stringify(part)}`);
     }
-    result.push(parsed);
-    rest = dirname(rest);
-  }
-
-  return result.reverse();
+    return parsed;
+  });
 }
 
 function byKeys([a], [b]) {
