@@ -9,24 +9,25 @@ function splitPath(path) {
   const result = [];
 
   const parts = path.split("/");
-  for (let i = parts.length - 1; i >= 0; i--) {
+  for (let i = 0; i < parts.length; i++) {
     const part = parts[i];
-    if (part === "..") {
-      i--;
+    if (part === ".." && result.length > 0) {
+      result.pop();
     } else if (part !== ".") {
       result.push(part);
     }
   }
 
   if (result.length > 0) {
-    const part = result[0];
-    const dot = part.lastIndexOf(".");
+    let last = result.pop();
+    const dot = last.lastIndexOf(".");
     if (dot >= 0) {
-      result[0] = part.slice(0, dot);
+      last = last.slice(0, dot);
     }
+    result.push(last);
   }
 
-  return result.reverse();
+  return result;
 }
 
 function parsePathPart(part) {
