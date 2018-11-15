@@ -1,0 +1,28 @@
+{
+  "name": "@badrap/routdir",
+  "version": "0.0.1",
+  "description": "Filesystem based route generation for Webpack + vue-router",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "source": "src/index.js",
+  "repository": "badrap/routdir",
+  "author": "Joachim Viide <jviide@iki.fi>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint --ignore-path .gitignore .",
+    "build": "rm -rf dist && microbundle --format es,cjs",
+    "prepublishOnly": "yarn run build"
+  },
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-prettier": "^3.3.0",
+    "microbundle": "^0.7.0",
+    "prettier": "^1.15.2"
+  },
+  "keywords": [
+    "vue",
+    "router",
+    "routing",
+    "webpack"
+  ]
+}
