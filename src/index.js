@@ -56,6 +56,15 @@ function byKeys([a], [b]) {
   return a < b ? -1 : 1;
 }
 
+function assignMeta(meta) {
+  return component => {
+    if (component.route) {
+      Object.assign(meta, component.route.meta);
+    }
+    return component;
+  };
+}
+
 function routify(map, _fullPath = []) {
   const entries = Array.from(map.entries());
   const sorted = [
@@ -67,11 +76,13 @@ function routify(map, _fullPath = []) {
   sorted.forEach(([part, info]) => {
     const path = part === "index" ? "" : part;
     const fullPath = path ? [..._fullPath, path] : _fullPath;
+    const meta = {};
     if (!info.nested) {
       results.push({
         path,
         name: "/" + fullPath.join("/"),
-        component: info.component
+        meta,
+        component: () => info.component().then(assignMeta(meta))
       });
     } else if (!info.component) {
       results.push(
@@ -85,7 +96,8 @@ function routify(map, _fullPath = []) {
     } else {
       results.push({
         path,
-        component: info.component,
+        meta,
+        component: () => info.component().then(assignMeta(meta)),
         children: routify(info.children, fullPath)
       });
     }
