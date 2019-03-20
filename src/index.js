@@ -66,7 +66,7 @@ function assignMeta(meta) {
 }
 
 function routify(map, _fullPath = []) {
-  const entries = Array.from(map.entries());
+  const entries = Object.keys(map).map(key => [key, map[key]]);
   const sorted = [
     ...entries.filter(([e]) => !e.startsWith(":")).sort(byKeys),
     ...entries.filter(([e]) => e.startsWith(":")).sort(byKeys)
@@ -110,7 +110,7 @@ export default function makeRoutes(context) {
     nested: true,
     resolved: null,
     component: null,
-    children: new Map()
+    children: Object.create(null)
   };
 
   context.keys().forEach(key => {
@@ -125,7 +125,7 @@ export default function makeRoutes(context) {
 
     let step = root;
     path.forEach(part => {
-      let next = step.children.get(part);
+      let next = step.children[part];
       if (next && !next.nested) {
         throw new Error();
       }
@@ -134,15 +134,15 @@ export default function makeRoutes(context) {
           nested: true,
           resolved: null,
           component: null,
-          children: new Map()
+          children: Object.create(null)
         };
-        step.children.set(part, next);
+        step.children[part] = next;
       }
       step = next;
     });
 
     if (lastPart !== "_layout") {
-      let next = step.children.get(lastPart);
+      let next = step.children[lastPart];
       if (next && next.nested) {
         throw new Error();
       }
@@ -152,7 +152,7 @@ export default function makeRoutes(context) {
           resolved: null,
           component: null
         };
-        step.children.set(lastPart, next);
+        step.children[lastPart] = next;
       }
       step = next;
     }
@@ -165,8 +165,8 @@ export default function makeRoutes(context) {
     step.component = () => Promise.resolve(context(key)).then(takeDefault);
   });
 
-  const routes = new Map();
-  routes.set("", root);
+  const routes = Object.create(null);
+  routes[""] = root;
   return routify(routes).map(route => {
     return {
       ...route,
