@@ -1,6 +1,6 @@
-# @badrap/routdir [![CircleCI](https://circleci.com/gh/badrap/routdir.svg?style=shield)](https://circleci.com/gh/badrap/routdir)
+# @badrap/routdir
 
-*Filesystem based route generation for Webpack + vue-router.*
+_Filesystem based route generation for Webpack + vue-router._
 
 **@badrap/routdir** is based on Sapper's [pages](https://sapper.svelte.technology/guide#pages) and [layouts](https://sapper.svelte.technology/guide#layouts) features, with some limitations.
 
@@ -21,7 +21,7 @@ $ yarn install --dev @badrap/routdir
 ```js
 import routdir from "@badrap/routdir";
 
-// Create a Webpack context from the ./routes directory, and feed it to routdir 
+// Create a Webpack context from the ./routes directory, and feed it to routdir
 // to build the routes.
 const routes = routdir(require.context("./routes", true, /\.vue$/));
 ```
@@ -40,21 +40,21 @@ import preload from "@badrap/preload";
 
 const router = new VueRouter({
   mode: "history",
-  routes: preload(routes)
+  routes: preload(routes),
 });
 ```
 
 ### Static Routes
 
-Files with basic alphanumeric names become *static routes*. For example `one.vue` and `two.vue` become routes `/one` and `/two`, respectively.
+Files with basic alphanumeric names become _static routes_. For example `one.vue` and `two.vue` become routes `/one` and `/two`, respectively.
 
 `index.vue` is a special case that just gets rendered as the root route. For example `index.vue` and `nested/index.vue` become routes `/` and `/nested`, respectively.
 
 ### Dynamic Routes
 
-Filenames wrapped in `[` and `]` become *dynamic routes*. For example `[number].vue` becomes route `/:number`. The route parameter `number` is then available for the route component as `$route.params.number`.
+Filenames wrapped in `[` and `]` become _dynamic routes_. For example `[number].vue` becomes route `/:number`. The route parameter `number` is then available for the route component as `$route.params.number`.
 
-In the case a route matches a static route *and* a dynamic route the static one has the precedence.
+In the case a route matches a static route _and_ a dynamic route the static one has the precedence.
 
 ### Nested Routes & Layouts
 
