@@ -6,7 +6,9 @@
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title">Hello from <code>three/_layout.vue</code>!</p>
+          <p class="modal-card-title">
+            Hello from <code>three/_layout.vue</code>!
+          </p>
         </header>
         <section class="modal-card-body">
           This is a modal notification shown by <code>three/_layout.vue</code>.
@@ -23,8 +25,8 @@
 export default {
   data() {
     return {
-      active: true
+      active: true,
     };
-  }
+  },
 };
 </script>

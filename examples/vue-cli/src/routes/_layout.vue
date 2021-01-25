@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <nav
+      class="navbar is-primary"
+      role="navigation"
+      aria-label="main navigation"
+    >
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="/">

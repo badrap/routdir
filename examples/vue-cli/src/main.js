@@ -9,9 +9,9 @@ const routes = routdir(require.context("./routes", true, /\.vue$/, "lazy"));
 new Vue({
   router: new VueRouter({
     mode: "history",
-    routes
+    routes,
   }),
   render(h) {
     return h("router-view", {}, []);
-  }
+  },
 }).$mount("#app");
