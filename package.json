@@ -1,6 +1,6 @@
 {
   "name": "@badrap/routdir",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": "Filesystem based route generation for Webpack + vue-router",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
