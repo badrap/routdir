@@ -1,4 +1,4 @@
-# @badrap/routdir
+# @badrap/routdir [![tests](https://github.com/badrap/routdir/workflows/tests/badge.svg)](https://github.com/badrap/routdir/actions?query=workflow%3Atests)
 
 _Filesystem based route generation for Webpack + vue-router._
 
