@@ -14,10 +14,10 @@
     "prepublishOnly": "yarn run build"
   },
   "devDependencies": {
-    "eslint": "^5.15.1",
-    "eslint-config-prettier": "^4.1.0",
-    "microbundle": "^0.11.0",
-    "prettier": "^1.16.4"
+    "eslint": "^7.18.0",
+    "eslint-config-prettier": "^7.2.0",
+    "microbundle": "^0.13.0",
+    "prettier": "^2.2.1"
   },
   "keywords": [
     "vue",
