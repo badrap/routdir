@@ -9,7 +9,7 @@ This package also works well together with [@badrap/preload](https://github.com/
 ## Installation
 
 ```sh
-$ yarn install --dev @badrap/routdir
+$ npm i @badrap/routdir
 ```
 
 ## Usage

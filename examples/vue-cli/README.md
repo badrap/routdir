@@ -6,11 +6,11 @@ package with **[Vue CLI 3](https://cli.vuejs.org/)**.
 ## Project setup
 
 ```
-yarn install
+npm i
 ```
 
 ### Compiles and hot-reloads
 
 ```
-yarn run serve
+npm run serve
 ```

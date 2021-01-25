@@ -9,9 +9,9 @@
   "author": "Joachim Viide <jviide@iki.fi>",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint --ignore-path .gitignore --ignore-pattern examples .",
+    "lint": "eslint --ignore-path .gitignore --ignore-pattern examples src",
     "build": "rm -rf dist && microbundle --format es,cjs",
-    "prepublishOnly": "yarn run build"
+    "prepack": "npm run build"
   },
   "devDependencies": {
     "eslint": "^7.18.0",
